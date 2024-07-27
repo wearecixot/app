@@ -8,6 +8,12 @@ import { useRouter } from "next/navigation";
 
 const Profile = () => {
   const router = useRouter();
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    router.push('/sign-in');
+  }
+
   return (
     <Layout className="flex flex-col gap-6">
       <div className="flex flex-col items-center">
@@ -46,7 +52,7 @@ const Profile = () => {
           <ChevronRight className="w-4 h-4" />
         </div>
       </div>
-      <Button variant="destructive">Sign Out</Button>
+      <Button variant="destructive" onClick={logout}>Sign Out</Button>
     </Layout>
   );
 };

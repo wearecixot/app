@@ -6,11 +6,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "@/components/button";
+import { useMutation } from "@tanstack/react-query";
 
 const OauthStrava = () => {
   const router = useRouter();
   const [step, setStep] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
+  const [alreadyCalled, setAlreadyCalled] = useState<boolean>(false);
 
   const searchParams = useSearchParams();
   const code = searchParams.get("code");
@@ -23,24 +25,32 @@ const OauthStrava = () => {
     }
   }, []);
 
+  const { isPending, mutate } = useMutation({
+    mutationFn: () => axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/strava?code=${code}`),
+    onSuccess: (res) => {
+      const data = res.data;
+      localStorage.setItem("token", data.data.token);
+      router.replace("/");
+    },
+    onError: (err) => {
+      setError(err.toString());
+    },
+  })
+
   useEffect(() => {
+    if (alreadyCalled) return;
+
     if (!code) {
       setError("Code not detected. Please try again.");
       return;
     }
 
+    setAlreadyCalled(true);
     setError(null);
-    axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/auth/strava?code=${code}`)
-      .then((res) => {
-        const data = res.data;
-        localStorage.setItem("token", data.data.token);
-        router.replace("/");
-      })
-      .catch((err) => {
-        setError(err.toString());
-      });
-  }, [code, router]);
+    if (!isPending) {
+      mutate();
+    }
+  }, []);
 
   return (
     <main className="h-screen">
