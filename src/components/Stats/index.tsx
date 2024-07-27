@@ -22,7 +22,7 @@ const Stats: FC = () => {
     useRewardsContext();
   return (
     <div className="px-4">
-      <section className="flex flex-col p-2 gap-2 w-full rounded-lg border-[1px] border-green-700/10 bg-green-800/5 drop-shadow-xl">
+      <section className="flex flex-col gap-2 p-2 w-full rounded-lg border-[1px] border-green-700/10 bg-green-600/10 drop-shadow-xl">
         <div className="flex flex-col gap-4 p-3 rounded-b-lg bg-white rounded-md">
           <div className="flex items-start justify-between">
             <div className="flex flex-col gap-1">
@@ -105,36 +105,7 @@ const Stats: FC = () => {
               </div>
             </div>
           </div>
-          {/*           <div className="grid grid-cols-2">
-            <div className="flex flex-col gap-1">
-              <p className="text-sm font-medium text-green-900/50">
-                Total distance
-              </p>
-              <div className="flex items-start gap-1">
-                <GitCommitVertical
-                  size={16}
-                  fill
-                  className="mt-1.5 text-green-600 fill-green-100"
-                />
-                <p className="text-lg font-semibold text-green-500">100 km</p>
-              </div>
-            </div>
-            <div className="flex flex-col gap-1">
-              <p className="text-sm font-medium text-green-900/50">
-                Total time
-              </p>
-              <div className="flex items-start gap-1">
-                <Timer
-                  fill
-                  size={16}
-                  className="mt-1.5 text-green-600 fill-green-100"
-                />
-                <p className="text-lg font-semibold text-green-500">
-                  100 second
-                </p>
-              </div>
-            </div>
-          </div> */}
+
           <Button
             variant="plain"
             size="lg"
@@ -164,7 +135,7 @@ const Stats: FC = () => {
             <p className="text-sm font-medium text-green-900/50">Level</p>
             <Progress value={Math.min(100, (activityHeadersData?.data?.data?.tierProgress ?? 2) * 10)} className="w-full" />
           </div>
-          <ArrowRight className="my-auto text-green-900/50" />
+          <ArrowRight className="my-auto text-green-600" />
         </Link>
       </section>
     </div>
