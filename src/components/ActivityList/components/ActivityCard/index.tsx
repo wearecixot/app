@@ -61,6 +61,7 @@ const ActivityCard: FC<Activity> = (props: Activity) => {
               "text-red-600 fill-red-200": props.type === "out",
             })}
           >
+            {props.type === "in" ? <p>+</p> : <p>-</p>}
             <Coins fill size={14} />
             <p className="text-sm font-medium">
               {randomInteger(1, 100)} points
