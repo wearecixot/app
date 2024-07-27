@@ -1,12 +1,14 @@
 "use client";
 
 import axios from "@/libs/axios";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { createContext, useContext } from "react";
 
 interface RewardsContextValue {
   mutateRedeemRewards: () => void;
   isMutateRewardsPending: boolean;
+  activityHeadersData: any;
+  isActivityHeadersLoading: boolean;
 }
 
 const RewardsContext = createContext<RewardsContextValue | undefined>(
@@ -21,11 +23,21 @@ export const RewardsProvider: React.FC<RewardsProviderProps> = ({
 }) => {
   const { mutate: mutateRedeemRewards, isPending: isMutateRewardsPending } = useMutation({
     mutationFn: () => axios.post("/reward/redeem"),
+    onSuccess: () => {
+      refetchActivityHeaders();
+    },
+  });
+
+  const { data: activityHeadersData, refetch: refetchActivityHeaders, isLoading: isActivityHeadersLoading } = useQuery({
+    queryKey: ["activity-headers"],
+    queryFn: () => axios.get("/activities/header"),
   });
 
   const value: RewardsContextValue = {
     mutateRedeemRewards,
     isMutateRewardsPending,
+    activityHeadersData,
+    isActivityHeadersLoading,
   };
 
   return (

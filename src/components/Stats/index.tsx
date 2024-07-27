@@ -1,23 +1,25 @@
-"use client"
+"use client";
 
-import { FC } from "react"
-import { Button } from "../button"
-import { Coins } from "lucide-react"
-import { Flame } from "lucide-react"
-import { Gift } from "lucide-react"
-import { GitCommitVertical } from "lucide-react"
-import { Timer } from "lucide-react"
-import { Badge } from "lucide-react"
-import Link from "next/link"
-import { Progress } from "../progress"
-import { ArrowRight } from "lucide-react"
-import { useRewardsContext } from "@/contexts/RewardsContext"
-import { Footprints } from "lucide-react"
-import { Bike } from "lucide-react"
-import { TrainFront } from "lucide-react"
+import { FC } from "react";
+import { Button } from "../button";
+import { Coins } from "lucide-react";
+import { Flame } from "lucide-react";
+import { Gift } from "lucide-react";
+import { GitCommitVertical } from "lucide-react";
+import { Timer } from "lucide-react";
+import { Badge } from "lucide-react";
+import Link from "next/link";
+import { Progress } from "../progress";
+import { ArrowRight } from "lucide-react";
+import { useRewardsContext } from "@/contexts/RewardsContext";
+import { Footprints } from "lucide-react";
+import { Bike } from "lucide-react";
+import { TrainFront } from "lucide-react";
+import { REWARDS_TIER_DICT } from "@/constants/rewards";
 
 const Stats: FC = () => {
-  const { mutateRedeemRewards, isMutateRewardsPending } = useRewardsContext()
+  const { mutateRedeemRewards, isMutateRewardsPending, activityHeadersData } =
+    useRewardsContext();
   return (
     <div className="px-4">
       <section className="flex flex-col p-2 gap-2 w-full rounded-lg border-[1px] border-green-700/10 bg-green-800/5 drop-shadow-xl">
@@ -34,7 +36,9 @@ const Stats: FC = () => {
                   className="mt-2 text-green-600 fill-green-200"
                 />
 
-                <p className="text-4xl font-bold text-green-500">100</p>
+                <p className="text-4xl font-bold text-green-500">
+                  {activityHeadersData?.data?.data?.balance ?? 0}
+                </p>
               </div>
             </div>
             <div className="flex flex-col gap-1">
@@ -47,7 +51,9 @@ const Stats: FC = () => {
                   size={16}
                   className="mt-1.5 text-green-600 fill-green-100"
                 />
-                <p className="text-lg font-semibold text-green-500">100 kcal</p>
+                <p className="text-lg font-semibold text-green-500">
+                  {activityHeadersData?.data?.data?.totalCalories ?? 0} kcal
+                </p>
               </div>
             </div>
           </div>
@@ -62,7 +68,9 @@ const Stats: FC = () => {
                   fill
                   className="mt-1.5 text-green-600 fill-green-100"
                 />
-                <p className="text-lg font-semibold text-green-500">100</p>
+                <p className="text-lg font-semibold text-green-500">
+                  {activityHeadersData?.data?.data?.totalRun ?? 0}
+                </p>
               </div>
             </div>
 
@@ -76,7 +84,9 @@ const Stats: FC = () => {
                   fill
                   className="mt-1.5 text-green-600 fill-green-100"
                 />
-                <p className="text-lg font-semibold text-green-500">100</p>
+                <p className="text-lg font-semibold text-green-500">
+                  {activityHeadersData?.data?.data?.totalBicycle ?? 0}
+                </p>
               </div>
             </div>
             <div className="flex flex-col gap-1">
@@ -89,7 +99,9 @@ const Stats: FC = () => {
                   fill
                   className="mt-1.5 text-green-600 fill-green-100"
                 />
-                <p className="text-lg font-semibold text-green-500">100</p>
+                <p className="text-lg font-semibold text-green-500">
+                  {activityHeadersData?.data?.data?.totalCommute ?? 0}
+                </p>
               </div>
             </div>
           </div>
@@ -145,18 +157,18 @@ const Stats: FC = () => {
               className=" text-green-600 fill-green-200 drop-shadow-md"
             />
             <p className="absolute z-10 text-md m-auto text-xs text-green-600">
-              1
+              {REWARDS_TIER_DICT[(activityHeadersData?.data?.data?.tier as keyof typeof REWARDS_TIER_DICT)]}
             </p>
           </div>
           <div className="flex flex-col gap-2 w-full">
             <p className="text-sm font-medium text-green-900/50">Level</p>
-            <Progress value={12} className="w-full" />
+            <Progress value={Math.min(100, (activityHeadersData?.data?.data?.tierProgress ?? 2) * 10)} className="w-full" />
           </div>
           <ArrowRight className="my-auto text-green-900/50" />
         </Link>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Stats
+export default Stats;
