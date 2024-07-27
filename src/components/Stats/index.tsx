@@ -113,14 +113,14 @@ const Stats: FC = () => {
             onClick={() => mutateRedeemRewards()}
             isLoading={isMutateRewardsPending}
           >
-            <Gift size={24} className="mr-2" />
+            <Gift size={22} className="mr-2" />
             Open Gift
           </Button>
         </div>
 
         <Link
           className="flex items-start justify-between gap-3 p-2 transition duration-200 ease-in-out"
-          href="/level"
+          href="/rewards"
         >
           <div className="relative flex items-center justify-center text-center">
             <Badge

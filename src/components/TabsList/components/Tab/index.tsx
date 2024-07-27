@@ -1,16 +1,16 @@
-import { cn } from "@/utils/cn";
-import { FC } from "react";
+import { cn } from "@/utils/cn"
+import { FC } from "react"
 
 interface TabProps {
-  children: React.ReactNode;
-  isActive: boolean;
-  onClick: () => void;
+  children: React.ReactNode
+  isActive: boolean
+  onClick: () => void
 }
 const Tab: FC<TabProps> = ({ children, isActive, onClick }) => {
   return (
     <div
       className={cn(
-        "w-full rounded-[4px] py-0.5 flex items-center justify-center",
+        "w-full rounded-[4px] font-medium py-0.5 flex items-center justify-center",
         isActive && "bg-white",
         !isActive && "cursor-pointer"
       )}
@@ -18,7 +18,7 @@ const Tab: FC<TabProps> = ({ children, isActive, onClick }) => {
     >
       <p className="text-sm">{children}</p>
     </div>
-  );
-};
+  )
+}
 
-export default Tab;
+export default Tab

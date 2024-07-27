@@ -5,6 +5,10 @@ import { CirclePlus, House, Ticket } from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
 import React, { FC } from "react"
 import * as Dialog from "../../../dialog"
+import { PersonStanding } from "lucide-react"
+import { User } from "lucide-react"
+import TabsList from "@/components/TabsList"
+import Tab from "@/components/TabsList/components/Tab"
 
 const Footer: FC = () => {
   const router = useRouter()
@@ -12,7 +16,6 @@ const Footer: FC = () => {
   const [on, setOn] = React.useState<"HOME" | "ADD" | "PROFILE" | "REWARDS">(
     "HOME"
   )
-  const [showAdd, setShowAdd] = React.useState(false)
 
   React.useEffect(() => {
     if (pathname.startsWith("/add")) {
@@ -34,18 +37,12 @@ const Footer: FC = () => {
           onClick={() => router.replace("/")}
         />
 
-        <Dialog.Root>
-          <Dialog.Trigger onClick={() => setShowAdd(true)}>
-            <CirclePlus
-              className={cn("cursor-pointer", on === "ADD" && "text-primary")}
-            />
-          </Dialog.Trigger>
-          <Dialog.Content className="p-0 overflow-hidden">
-            <p>hi</p>
-          </Dialog.Content>
-        </Dialog.Root>
+        <CirclePlus
+          className={cn("cursor-pointer", on === "ADD" && "text-primary")}
+          onClick={() => router.replace("add")}
+        />
 
-        <Ticket
+        <User
           className={cn("cursor-pointer", on === "PROFILE" && "text-primary")}
           onClick={() => router.replace("/profile")}
         />
