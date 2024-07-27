@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={GeistSans.className}>
-      <body className="max-w-[450px] min-h-screen mx-auto shadow-xl">
+      <body className="max-w-[450px] min-h-screen mx-auto">
         <Theme className="w-full h-full overflow-x-hidden">
           <AuthGuard>{children}</AuthGuard>
         </Theme>
