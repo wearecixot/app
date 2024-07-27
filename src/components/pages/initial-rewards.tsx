@@ -15,10 +15,12 @@ const InitialRewardsPage = () => {
       <main className="h-screen">
         <section className="flex flex-col my-auto h-full justify-between px-6 py-12">
           <div className="flex flex-col items-center my-auto gap-6 h-fit">
-            <Loader
-              size={24}
-              className="mr-2 animate-spin tracking-tight leading-tight"
-            />
+            {isCalculating && (
+              <Loader
+                size={24}
+                className="mr-2 animate-spin tracking-tight leading-tight"
+              />
+            )}
             <h1 className="text-2xl font-semibold text-center w-3/4">
               {isCalculating
                 ? "We're calculating redeemable points for you"
