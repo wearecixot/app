@@ -1,25 +1,25 @@
-"use client";
+"use client"
 
-import { FC } from "react";
-import { Button } from "../button";
-import { Coins } from "lucide-react";
-import { Flame } from "lucide-react";
-import { Gift } from "lucide-react";
-import { GitCommitVertical } from "lucide-react";
-import { Timer } from "lucide-react";
-import { Badge } from "lucide-react";
-import Link from "next/link";
-import { Progress } from "../progress";
-import { ArrowRight } from "lucide-react";
-import { useRewardsContext } from "@/contexts/RewardsContext";
-import { Footprints } from "lucide-react";
-import { Bike } from "lucide-react";
-import { TrainFront } from "lucide-react";
-import { REWARDS_TIER_DICT } from "@/constants/rewards";
+import { FC } from "react"
+import { Button } from "../button"
+import { Coins } from "lucide-react"
+import { Flame } from "lucide-react"
+import { Gift } from "lucide-react"
+import { GitCommitVertical } from "lucide-react"
+import { Timer } from "lucide-react"
+import { Badge } from "lucide-react"
+import Link from "next/link"
+import { Progress } from "../progress"
+import { ArrowRight } from "lucide-react"
+import { useRewardsContext } from "@/contexts/RewardsContext"
+import { Footprints } from "lucide-react"
+import { Bike } from "lucide-react"
+import { TrainFront } from "lucide-react"
+import { REWARDS_TIER_DICT } from "@/constants/rewards"
 
 const Stats: FC = () => {
   const { mutateRedeemRewards, isMutateRewardsPending, activityHeadersData } =
-    useRewardsContext();
+    useRewardsContext()
   return (
     <div className="px-4">
       <section className="flex flex-col gap-2 p-2 w-full rounded-lg border-[1px] border-green-700/10 bg-green-600/10 drop-shadow-xl">
@@ -128,18 +128,29 @@ const Stats: FC = () => {
               className=" text-green-600 fill-green-200 drop-shadow-md"
             />
             <p className="absolute z-10 text-md m-auto text-xs text-green-600">
-              {REWARDS_TIER_DICT[(activityHeadersData?.data?.data?.tier as keyof typeof REWARDS_TIER_DICT)]}
+              {
+                REWARDS_TIER_DICT[
+                  activityHeadersData?.data?.data
+                    ?.tier as keyof typeof REWARDS_TIER_DICT
+                ]
+              }
             </p>
           </div>
           <div className="flex flex-col gap-2 w-full">
             <p className="text-sm font-medium text-green-900/50">Level</p>
-            <Progress value={Math.min(100, (activityHeadersData?.data?.data?.tierProgress ?? 2) * 10)} className="w-full" />
+            <Progress
+              value={Math.min(
+                100,
+                (activityHeadersData?.data?.data?.tierProgress ?? 0) * 10
+              )}
+              className="w-full"
+            />
           </div>
           <ArrowRight className="my-auto text-green-600" />
         </Link>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Stats;
+export default Stats
