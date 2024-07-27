@@ -1,15 +1,15 @@
 import { FC } from "react";
 import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
+import { cn } from "@/utils/cn";
 
 interface LayoutProps {
   children: React.ReactNode;
+  className?: string;
 }
-const Layout: FC<LayoutProps> = ({ children }) => {
+const Layout: FC<LayoutProps> = ({ children, className = '' }) => {
   return (
     <div className="h-screen flex flex-col">
-      <Navbar />
-      <div className="w-full flex-1 overflow-x-hidden overflow-y-auto p-4">
+      <div className={cn("w-full flex-1 overflow-x-hidden overflow-y-auto px-4 py-6", className)}>
         {children}
       </div>
       <Footer />

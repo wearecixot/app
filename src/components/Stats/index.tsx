@@ -3,7 +3,7 @@ import { Button } from "../button";
 
 const Stats: FC = () => {
     return (
-        <div className="flex bg-tertiary items-center w-full rounded-lg p-4">
+        <section className="flex bg-secondary items-center w-full rounded-lg p-4">
             <div className="flex flex-1 flex-col">
                 <p className="text-sm">Your Points</p>
                 <p className="text-3xl font-bold">100</p>
@@ -12,7 +12,7 @@ const Stats: FC = () => {
             <Button>
                 Redeem
             </Button>
-        </div>
+        </section>
     );
 }
 
