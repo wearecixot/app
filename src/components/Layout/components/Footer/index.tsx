@@ -1,27 +1,28 @@
-"use client";
+"use client"
 
-import { FC, useEffect, useState } from "react";
-import { cn } from "@/utils/cn";
-import { usePathname, useRouter } from "next/navigation";
+import { FC, useEffect, useState } from "react"
+import { cn } from "@/utils/cn"
+import { usePathname, useRouter } from "next/navigation"
 
-import { House, User, CirclePlus, Award } from "lucide-react";
+import { House, User, CirclePlus, Award } from "lucide-react"
+import { Ticket } from "lucide-react"
 
 const Footer: FC = () => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const [on, setOn] = useState<"HOME" | "ADD" | "PROFILE" | "REWARDS">("HOME");
+  const router = useRouter()
+  const pathname = usePathname()
+  const [on, setOn] = useState<"HOME" | "ADD" | "PROFILE" | "REWARDS">("HOME")
 
   useEffect(() => {
     if (pathname.startsWith("/add")) {
-      setOn("ADD");
+      setOn("ADD")
     } else if (pathname.startsWith("/profile")) {
-      setOn("PROFILE");
+      setOn("PROFILE")
     } else if (pathname.startsWith("/rewards")) {
-      setOn("REWARDS");
+      setOn("REWARDS")
     } else {
-      setOn("HOME");
+      setOn("HOME")
     }
-  }, [pathname]);
+  }, [pathname])
 
   return (
     <div className="w-full py-4 flex justify-evenly border-t-0.5 border-t-gray-300">
@@ -33,16 +34,12 @@ const Footer: FC = () => {
         className={cn("cursor-pointer", on === "ADD" && "text-primary")}
         onClick={() => router.replace("/add")}
       />
-      <Award
-        className={cn("cursor-pointer", on === "REWARDS" && "text-primary")}
-        onClick={() => router.replace("/rewards")}
-      />
-      <User
+      <Ticket
         className={cn("cursor-pointer", on === "PROFILE" && "text-primary")}
         onClick={() => router.replace("/profile")}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
