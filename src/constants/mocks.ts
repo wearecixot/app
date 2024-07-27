@@ -70,20 +70,9 @@ export const MOCK_DATA = [
   },
 ]
 
-interface SportMetadata {
-  calories: number
-  distance: number
-  elapsedTime: number
-  type: "Run" | "Ride"
-}
-
-interface RewardMetadata {
-  merchant: string
-}
-
 export interface Activity {
   id: number
-  type: "out" | "in"
+  type: string
   name: string
   created_at: string
   amount: number
