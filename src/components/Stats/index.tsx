@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react"
 import { Button } from "../button"
 import { Coins } from "lucide-react"
@@ -9,8 +11,10 @@ import { Badge } from "lucide-react"
 import Link from "next/link"
 import { Progress } from "../progress"
 import { ArrowRight } from "lucide-react"
+import { useRewardsContext } from "@/contexts/RewardsContext"
 
 const Stats: FC = () => {
+  const { mutateRedeemRewards, isMutateRewardsPending } = useRewardsContext()
   return (
     <div className="px-4">
       <section className="flex flex-col w-full rounded-lg border-[1px] border-green-800/10 bg-white drop-shadow-xl">
@@ -32,7 +36,9 @@ const Stats: FC = () => {
             <Button
               variant="plain"
               size="lg"
-              className="bg-green-500 hover:bg-green-600 text-white"
+              className="bg-green-500 hover:bg-green-600 w-[162px] text-white"
+              onClick={() => mutateRedeemRewards()}
+              isLoading={isMutateRewardsPending}
             >
               <Gift size={24} className="mr-2" />
               Open Gift
