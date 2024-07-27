@@ -7,10 +7,15 @@ const instance = axiosPrimitive.create({
   headers: {
     "Content-Type": "application/json",
     timeout: 1000,
-    ...(localStorage.getItem("token") && {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    }),
   },
 })
+
+// Check if we're in a browser environment before accessing localStorage
+if (typeof window !== 'undefined') {
+  const token = localStorage.getItem("token")
+  if (token) {
+    instance.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  }
+}
 
 export default instance
