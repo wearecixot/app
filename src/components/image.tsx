@@ -1,3 +1,5 @@
+"use client"
+
 import NextImage from "next/image"
 import React from "react"
 import { Skeleton } from "./skeleton"

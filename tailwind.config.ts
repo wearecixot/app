@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
 
 const config: Config = {
   content: [
@@ -14,10 +14,10 @@ const config: Config = {
         tertiary: "#dcfce7",
       },
       borderWidth: {
-        '0.5': '0.5px'
-      }
+        "0.5": "0.5px",
+      },
     },
   },
-  plugins: [],
-};
-export default config;
+  plugins: [require("tailwindcss-animate")],
+}
+export default config

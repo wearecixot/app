@@ -4,6 +4,8 @@ import { Button } from "@/components/button"
 import { Image } from "@/components/image"
 import { PageTransition } from "@/layouts/transition"
 import { useRouter } from "next/navigation"
+import { motion } from "framer-motion"
+import React from "react"
 
 const SignInPage = () => {
   const { push } = useRouter()
@@ -11,9 +13,34 @@ const SignInPage = () => {
     <PageTransition>
       <main className="h-screen">
         <section className="flex flex-col h-full justify-between px-6 py-12">
+          {/*           <motion.div
+            key={"sign-in"}
+            initial="initialState"
+            animate="animateState"
+            exit="exitState"
+            transition={{
+              type: "tween",
+              duration: 0.5,
+            }}
+            variants={{
+              initialState: {
+                x: "100vw",
+                opacity: 0,
+              },
+              animateState: {
+                x: 0,
+                opacity: 1,
+              },
+              exitState: {
+                x: "-100vw",
+                opacity: 0,
+              },
+            }}
+          > */}
           <h1 className="text-5xl font-semibold">
             Welcome to <br /> Hidup Sehat!
           </h1>
+          {/*           </motion.div> */}
           <div className="flex flex-col gap-3">
             <Button onClick={() => push("/reward")}>
               <Image
