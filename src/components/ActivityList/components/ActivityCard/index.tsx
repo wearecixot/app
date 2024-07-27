@@ -1,3 +1,4 @@
+import { Button } from "@/components/button"
 import { Image } from "@/components/image"
 import { Activity } from "@/constants/mocks"
 import { cn } from "@/utils/cn"
@@ -21,17 +22,19 @@ function randomInteger(min: number, max: number) {
 const ActivityCard: FC<Activity> = (props: Activity) => {
   const { date, time } = formatDate(new Date(props.created_at).getTime())
   return (
-    <section className="flex items-center w-full gap-3">
+    <section className="flex items-start w-full gap-3">
       <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center relative">
-        {props.type === "in" ? (
-          <div className="w-6 h-6 flex items-center justify-center text-white bg-green-500 absolute z-10 -top-2.5 -left-2.5 rounded-full border-[3px] border-white">
-            <ArrowDownRight size={12} />
-          </div>
-        ) : (
-          <div className="w-6 h-6 flex items-center justify-center text-white bg-red-500 absolute z-10 -top-2.5 -left-2.5 rounded-full border-[3px] border-white">
-            <ArrowUpLeft size={12} />
-          </div>
-        )}
+        {props.is_claimed ? (
+          props.type === "in" ? (
+            <div className="w-6 h-6 flex items-center justify-center text-white bg-green-500 absolute z-10 -top-2.5 -left-2.5 rounded-full border-[3px] border-white">
+              <ArrowDownRight size={12} />
+            </div>
+          ) : (
+            <div className="w-6 h-6 flex items-center justify-center text-white bg-red-500 absolute z-10 -top-2.5 -left-2.5 rounded-full border-[3px] border-white">
+              <ArrowUpLeft size={12} />
+            </div>
+          )
+        ) : null}
         {props.metadata.type === "Run" ? (
           <Image
             src="/logo/run.png"
@@ -55,18 +58,20 @@ const ActivityCard: FC<Activity> = (props: Activity) => {
         </div>
         <div className="flex items-center">
           <p className="font-semibold">{props.name}</p>
-          <div
-            className={cn("flex ml-auto items-center gap-1 ", {
-              "text-green-600 fill-green-200": props.type === "in",
-              "text-red-600 fill-red-200": props.type === "out",
-            })}
-          >
-            {props.type === "in" ? <p>+</p> : <p>-</p>}
-            <Coins fill size={14} />
-            <p className="text-sm font-medium">
-              {randomInteger(1, 100)} points
-            </p>
-          </div>
+          {props.is_claimed ? (
+            <div
+              className={cn("flex ml-auto items-center gap-1 ", {
+                "text-green-600 fill-green-200": props.type === "in",
+                "text-red-600 fill-red-200": props.type === "out",
+              })}
+            >
+              {props.type === "in" ? <p>+</p> : <p>-</p>}
+              <Coins fill size={14} />
+              <p className="text-sm font-medium">
+                {randomInteger(1, 100)} points
+              </p>
+            </div>
+          ) : null}
         </div>
 
         <div className="flex flex-col">
@@ -98,6 +103,17 @@ const ActivityCard: FC<Activity> = (props: Activity) => {
             </div>
           )}
         </div>
+
+        {props.is_claimed ? null : (
+          <Button
+            variant="plain"
+            size="lg"
+            className="bg-green-500 flex items-center gap-1 rounded-lg mt-2 hover:bg-green-600 text-white"
+          >
+            <Coins fill size={14} className="text-white fill-green-500" />
+            Claim {props.amount} points
+          </Button>
+        )}
       </div>
     </section>
   )

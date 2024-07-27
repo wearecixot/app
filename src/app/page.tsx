@@ -1,7 +1,7 @@
-import ActivityList from "@/components/ActivityList";
-import Layout from "@/components/Layout";
-import Salutation from "@/components/Salutation";
-import Stats from "@/components/Stats";
+import ActivityList from "@/components/ActivityList"
+import Layout from "@/components/Layout"
+import Salutation from "@/components/Salutation"
+import Stats from "@/components/Stats"
 
 const Home = () => {
   return (
@@ -10,8 +10,7 @@ const Home = () => {
       <Stats />
       <ActivityList />
     </Layout>
-  );
-};
+  )
+}
 
-export default Home;
-
+export default Home
