@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "@/components/button";
 import { useMutation } from "@tanstack/react-query";
+import { setCookie } from "nookies";
 
 const OauthStrava = () => {
   const router = useRouter();
@@ -29,7 +30,9 @@ const OauthStrava = () => {
     mutationFn: () => axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/strava?code=${code}`),
     onSuccess: (res) => {
       const data = res.data;
-      localStorage.setItem("token", data.data.token);
+      setCookie(null, "token", data.data.token, {
+        path: '/'
+      });
       router.replace("/");
     },
     onError: (err) => {

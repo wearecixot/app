@@ -5,12 +5,13 @@ import Layout from "@/components/Layout"
 import Image from "next/image"
 import { ChevronRight } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { destroyCookie } from "nookies"
 
 const Profile = () => {
   const router = useRouter();
 
   const logout = () => {
-    localStorage.removeItem('token');
+    destroyCookie(null, "token");
     router.push('/sign-in');
   }
 

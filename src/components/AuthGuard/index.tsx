@@ -1,6 +1,7 @@
 'use client'
 
 import { usePathname, useRouter } from "next/navigation";
+import { parseCookies } from "nookies";
 import { FC, useEffect, useMemo, useState } from "react";
 
 interface AuthGuardProps {
@@ -28,7 +29,7 @@ const AuthGuard: FC<AuthGuardProps> = ({ children }) => {
     }
 
     // If current path is not public, then check if user is authenticated
-    const token = localStorage.getItem("token");
+    const token = parseCookies().token;
     if (!token) {
       router.replace("/sign-in");
       return;
