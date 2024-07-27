@@ -2,7 +2,7 @@ import ActivityList from "@/components/ActivityList";
 import Layout from "@/components/Layout";
 import RewardList from "@/components/RewardList";
 import Salutation from "@/components/Salutation";
-import Stats from "@/components/Stats";
+import Stats from "@/components/Stats"
 
 const Home = () => {
   return (
@@ -12,8 +12,7 @@ const Home = () => {
       <RewardList />
       <ActivityList />
     </Layout>
-  );
-};
+  )
+}
 
-export default Home;
-
+export default Home
