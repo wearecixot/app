@@ -1,9 +1,13 @@
+'use client'
+
 import { Button } from "@/components/button";
 import Layout from "@/components/Layout";
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const Profile = () => {
+  const router = useRouter();
   return (
     <Layout className="flex flex-col gap-6">
       <div className="flex flex-col items-center">
@@ -28,7 +32,10 @@ const Profile = () => {
           <p className="text-xs">Rewards</p>
         </div>
       </div>
-      <Button variant="outline">Edit Profile</Button>
+      <Button
+        variant="outline"
+        onClick={() => router.push('/profile/edit')}
+      >Edit Profile</Button>
       <div className="border border-gray-300 cursor-pointer rounded-lg">
         <div className="flex p-4 border-b border-gray-200">
           <p className="text-sm flex-1">Terms of Service</p>
