@@ -2,15 +2,15 @@ import { Image } from "@/components/image"
 import { Activity } from "@/constants/mocks"
 import { cn } from "@/utils/cn"
 import { formatDate } from "@/utils/formatDate"
-import { Timer } from "lucide-react"
 import {
   ArrowDownRight,
-  ArrowUpRight,
+  ArrowUpLeft,
   Coins,
   Flame,
   GitCommitVertical,
   Store,
   TicketCheck,
+  Timer,
 } from "lucide-react"
 import { FC } from "react"
 
@@ -29,7 +29,7 @@ const ActivityCard: FC<Activity> = (props: Activity) => {
           </div>
         ) : (
           <div className="w-6 h-6 flex items-center justify-center text-white bg-red-500 absolute z-10 -top-2.5 -left-2.5 rounded-full border-[3px] border-white">
-            <ArrowUpRight size={12} />
+            <ArrowUpLeft size={12} />
           </div>
         )}
         {props.metadata.type === "Run" ? (
@@ -78,13 +78,13 @@ const ActivityCard: FC<Activity> = (props: Activity) => {
                   {randomInteger(1000, 2000).toLocaleString()} kcal
                 </p>
               </div>
-              <div className="flex items-center gap-1 text-gray-700 opacity-50">
+              <div className="flex items-center gap-1  opacity-50">
                 <Timer size={14} />
                 <p className="text-sm font-medium">
                   {randomInteger(5, 10).toLocaleString()} second
                 </p>
               </div>
-              <div className="flex items-center gap-0.5 text-gray-700 opacity-50">
+              <div className="flex items-center gap-0.5  opacity-50">
                 <GitCommitVertical size={14} />
                 <p className="text-sm font-medium">
                   {randomInteger(5, 10).toLocaleString()} km
@@ -92,7 +92,7 @@ const ActivityCard: FC<Activity> = (props: Activity) => {
               </div>
             </div>
           ) : (
-            <div className="flex items-center gap-1 text-gray-700 opacity-50">
+            <div className="flex items-center gap-1  opacity-50">
               <Store size={14} />
               <p className="text-sm font-medium">{props.metadata.merchant}</p>
             </div>
