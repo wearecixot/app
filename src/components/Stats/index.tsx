@@ -2,6 +2,7 @@ import { FC } from "react"
 import { Button } from "../button"
 import { Coins } from "lucide-react"
 import { Flame } from "lucide-react"
+import { Gift } from "lucide-react"
 
 const Stats: FC = () => {
   return (
@@ -21,7 +22,8 @@ const Stats: FC = () => {
         size="lg"
         className="bg-green-500 hover:bg-green-600 text-white"
       >
-        Redeem
+        <Gift size={24} className="mr-2" />
+        Open Gift
       </Button>
     </section>
   )
