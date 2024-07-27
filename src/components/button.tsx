@@ -1,15 +1,14 @@
 "use client"
 
-import * as React from "react"
+import { cn } from "@/utils/cn"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/utils/cn"
 import { Loader } from "lucide-react"
-import type { LucideIcon } from "lucide-react"
+import * as React from "react"
 import * as Tooltip from "./tooltip"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-lg text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center rounded-xl text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -25,7 +24,7 @@ const buttonVariants = cva(
       },
       size: {
         plain: "",
-        default: "h-11 px-4 py-3",
+        default: "h-12 px-4 py-3",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
@@ -44,7 +43,7 @@ export interface ButtonProps
   asChild?: boolean
   isLoading?: boolean
   icon?: {
-    icon: LucideIcon
+    icon: React.ElementType
     size?: number
   }
   tooltip?: string | React.ReactNode
