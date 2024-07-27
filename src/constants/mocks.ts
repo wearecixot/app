@@ -119,3 +119,9 @@ export interface Activity {
     merchant?: string
   }
 }
+
+export const TIER_REWARDS = [
+  ["The Coffee Beans", "Tomoro Coffee", "Kopi Kenangan"],
+  ["Excelso", "Tomoro Coffee", "Kopi Kenangan"],
+  ["Starbucks", "Tomoro Coffee", "Kopi Kenangan"],
+]
