@@ -1,3 +1,5 @@
+'use client'
+
 import axiosPrimitive from "axios"
 
 const instance = axiosPrimitive.create({
