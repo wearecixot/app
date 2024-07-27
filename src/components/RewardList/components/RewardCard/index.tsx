@@ -10,6 +10,8 @@ import * as Dialog from "../../../dialog"
 import { XCircle } from "lucide-react"
 import { Button } from "@/components/button"
 import { X } from "lucide-react"
+import { Ticket } from "lucide-react"
+import { TicketPercent } from "lucide-react"
 
 const RewardCard: FC = () => {
   const id = React.useId()
@@ -41,10 +43,15 @@ const RewardCard: FC = () => {
                 Expired {getRelativeTimeString(twodaysfromtoday)}
               </p>
             </div>
+            <Button
+              size="sm"
+              className="mt-1.5"
+              onClick={() => setIsOpen(false)}
+            >
+              <Ticket size={12} className="mr-2" />
+              Claim
+            </Button>
           </div>
-          <Button size="lg" onClick={() => setIsOpen(false)}>
-            Close
-          </Button>
         </div>
       </Dialog.Trigger>
       <Dialog.Content className="p-0 overflow-hidden">
@@ -68,7 +75,7 @@ const RewardCard: FC = () => {
           </button>
         </div>
         <div className="flex flex-col gap-3 px-4 pb-4">
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1.5">
             <p className="font-semibold">Mochacino</p>
             <div className="flex items-center gap-1  opacity-50">
               <Store size={14} />
@@ -80,6 +87,10 @@ const RewardCard: FC = () => {
                 Expired {getRelativeTimeString(twodaysfromtoday)}
               </p>
             </div>
+            <p className="p-2 mt-2 relative bg-black/5 flex border-[1px] border-black/10 items-center w-full justify-center gap-2 rounded-md font-mono text-center">
+              <TicketPercent size={14} className="opacity-50 absolute left-3" />
+              <span>1232</span>
+            </p>
           </div>
           <Button size="lg" onClick={() => setIsOpen(false)}>
             Close
