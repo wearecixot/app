@@ -2,13 +2,15 @@
 
 import axios from "@/libs/axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 interface RewardsContextValue {
   mutateRedeemRewards: () => void;
   isMutateRewardsPending: boolean;
   activityHeadersData: any;
   isActivityHeadersLoading: boolean;
+  showConfetti: boolean;
+  setShowConfetti: (showConfetti: boolean) => void;
 }
 
 const RewardsContext = createContext<RewardsContextValue | undefined>(
@@ -21,10 +23,12 @@ export interface RewardsProviderProps {
 export const RewardsProvider: React.FC<RewardsProviderProps> = ({
   children,
 }) => {
+  const [showConfetti, setShowConfetti] = useState<boolean>(false);
   const { mutate: mutateRedeemRewards, isPending: isMutateRewardsPending } = useMutation({
     mutationFn: () => axios.post("/reward/redeem"),
     onSuccess: () => {
       refetchActivityHeaders();
+      setShowConfetti(true);
     },
   });
 
@@ -38,6 +42,8 @@ export const RewardsProvider: React.FC<RewardsProviderProps> = ({
     isMutateRewardsPending,
     activityHeadersData,
     isActivityHeadersLoading,
+    showConfetti,
+    setShowConfetti,
   };
 
   return (

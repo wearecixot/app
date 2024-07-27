@@ -6,6 +6,7 @@ import { Theme } from "@radix-ui/themes"
 import AuthGuard from "@/components/AuthGuard"
 import ReactQueryProvider from "@/components/ReactQueryProvider"
 import MainProvider from "@/contexts"
+import ConfettiLayer from "@/components/ConfettiLayer"
 
 export const metadata: Metadata = {
   title: "Hidup Sehat",
@@ -23,7 +24,11 @@ export default function RootLayout({
         <ReactQueryProvider>
           <MainProvider>
             <Theme className="w-full h-full overflow-x-hidden">
-              <AuthGuard>{children}</AuthGuard>
+              <AuthGuard>
+                <ConfettiLayer>
+                  {children}
+                </ConfettiLayer>
+              </AuthGuard>
             </Theme>
           </MainProvider>
         </ReactQueryProvider>
