@@ -4,6 +4,10 @@ import { Activity } from "@/constants/mocks"
 import { cn } from "@/utils/cn"
 import { formatDate } from "@/utils/formatDate"
 import { randomInteger } from "@/utils/math"
+import { ArrowUpRight } from "lucide-react"
+import { Footprints } from "lucide-react"
+import { Bike } from "lucide-react"
+import { TrainFront } from "lucide-react"
 import {
   ArrowDownRight,
   ArrowUpLeft,
@@ -14,7 +18,7 @@ import {
   TicketCheck,
   Timer,
 } from "lucide-react"
-import { FC } from "react"
+import React, { FC } from "react"
 
 const ActivityCard: FC<Activity> = (props: Activity) => {
   const { date, time } = formatDate(new Date(props.created_at).getTime())
@@ -33,17 +37,11 @@ const ActivityCard: FC<Activity> = (props: Activity) => {
           )
         ) : null}
         {props.metadata.type === "Run" ? (
-          <Image
-            src="/logo/run.png"
-            alt="Run"
-            className="h-[14px] w-[14px]  invert"
-          />
+          <Footprints className="text-white" size={16} />
         ) : props.metadata.type === "Ride" ? (
-          <Image
-            src="/logo/cycle.png"
-            alt="Run"
-            className="h-[18px] w-[18px] invert"
-          />
+          <Bike className="text-white" size={16} />
+        ) : props.metadata.type === "Commute" ? (
+          <TrainFront className="text-white" size={16} />
         ) : (
           <TicketCheck className="text-white" size={16} />
         )}
@@ -72,26 +70,43 @@ const ActivityCard: FC<Activity> = (props: Activity) => {
         </div>
 
         <div className="flex flex-col">
-          {props.metadata.type === "Run" || props.metadata.type === "Ride" ? (
+          {props.metadata.type === "Run" ||
+          props.metadata.type === "Ride" ||
+          props.metadata.type === "Commute" ? (
             <div className="flex flex-item gap-2">
-              <div className="flex items-center gap-0.5 opacity-50">
-                <Flame size={14} />
-                <p className="text-sm font-medium">
-                  {randomInteger(1000, 2000).toLocaleString()} kcal
-                </p>
-              </div>
-              <div className="flex items-center gap-1  opacity-50">
-                <Timer size={14} />
-                <p className="text-sm font-medium">
-                  {randomInteger(5, 10).toLocaleString()} second
-                </p>
-              </div>
-              <div className="flex items-center gap-0.5  opacity-50">
-                <GitCommitVertical size={14} />
-                <p className="text-sm font-medium">
-                  {randomInteger(5, 10).toLocaleString()} km
-                </p>
-              </div>
+              {props.metadata.type === "Commute" ? (
+                <React.Fragment>
+                  <div className="flex items-center gap-0.5 opacity-50">
+                    <ArrowDownRight size={14} />
+                    <p className="text-sm font-medium">{props.metadata.in}</p>
+                  </div>
+                  <div className="flex items-center gap-0.5 opacity-50">
+                    <ArrowUpRight size={14} />
+                    <p className="text-sm font-medium">{props.metadata.out}</p>
+                  </div>
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  <div className="flex items-center gap-0.5 opacity-50">
+                    <Flame size={14} />
+                    <p className="text-sm font-medium">
+                      {randomInteger(1000, 2000).toLocaleString()} kcal
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1  opacity-50">
+                    <Timer size={14} />
+                    <p className="text-sm font-medium">
+                      {randomInteger(5, 10).toLocaleString()} second
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-0.5  opacity-50">
+                    <GitCommitVertical size={14} />
+                    <p className="text-sm font-medium">
+                      {randomInteger(5, 10).toLocaleString()} km
+                    </p>
+                  </div>
+                </React.Fragment>
+              )}
             </div>
           ) : (
             <div className="flex items-center gap-1  opacity-50">

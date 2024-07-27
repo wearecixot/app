@@ -44,15 +44,14 @@ export const MOCK_DATA = [
   {
     id: 2,
     type: "in",
-    name: "Evening Ride",
+    name: "Commute",
     created_at: "2024-07-26T18:00:00Z",
     amount: 15,
     is_claimed: true,
     metadata: {
-      calories: 600,
-      distance: 20,
-      elapsedTime: 3600,
-      type: "Ride",
+      in: "Stasiun Angke",
+      out: "Stasiun Manggarai",
+      type: "Commute",
     },
   },
   {
@@ -112,6 +111,8 @@ export interface Activity {
   amount: number
   is_claimed: boolean
   metadata: {
+    in?: string
+    out?: string
     calories?: number
     distance?: number
     elapsedTime?: number
