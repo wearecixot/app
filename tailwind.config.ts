@@ -13,6 +13,9 @@ const config: Config = {
         secondary: "#86efac",
         tertiary: "#dcfce7",
       },
+      borderWidth: {
+        '0.5': '0.5px'
+      }
     },
   },
   plugins: [],

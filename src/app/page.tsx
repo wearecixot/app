@@ -1,5 +1,13 @@
-const Home = () => {
-  return <p className="text-3xl font-semibold">Home</p>
-}
+import Layout from "@/components/Layout";
+import Stats from "@/components/Stats";
 
-export default Home
+const Home = () => {
+  return (
+    <Layout>
+      <Stats />
+    </Layout>
+  );
+};
+
+export default Home;
+
