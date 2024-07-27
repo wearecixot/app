@@ -1,15 +1,15 @@
-'use client'
+"use client"
 
-import { Button } from "@/components/button";
-import Layout from "@/components/Layout";
-import Image from "next/image";
-import { ChevronRight } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { Button } from "@/components/button"
+import Layout from "@/components/Layout"
+import Image from "next/image"
+import { ChevronRight } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 const Profile = () => {
-  const router = useRouter();
+  const router = useRouter()
   return (
-    <Layout className="flex flex-col gap-6">
+    <Layout className="flex flex-col gap-6 px-4">
       <div className="flex flex-col items-center">
         <div className="rounded-full text-center overflow-hidden h-24 aspect-square relative">
           <Image
@@ -19,8 +19,12 @@ const Profile = () => {
             fill
           />
         </div>
-        <p className="mt-4 text-lg font-semibold leading-none">Vincent Suryakim</p>
-        <p className="mt-2 text-sm text-gray-500 leading-none">@vincentsuryakim</p>
+        <p className="mt-4 text-lg font-semibold leading-none">
+          Vincent Suryakim
+        </p>
+        <p className="mt-2 text-sm text-gray-500 leading-none">
+          @vincentsuryakim
+        </p>
       </div>
       <div className="flex justify-evenly">
         <div className="text-center flex flex-col items-center">
@@ -32,10 +36,9 @@ const Profile = () => {
           <p className="text-xs">Rewards</p>
         </div>
       </div>
-      <Button
-        variant="outline"
-        onClick={() => router.push('/profile/edit')}
-      >Edit Profile</Button>
+      <Button variant="outline" onClick={() => router.push("/profile/edit")}>
+        Edit Profile
+      </Button>
       <div className="border border-gray-300 cursor-pointer rounded-lg">
         <div className="flex p-4 border-b border-gray-200">
           <p className="text-sm flex-1">Terms of Service</p>
@@ -48,7 +51,7 @@ const Profile = () => {
       </div>
       <Button variant="destructive">Sign Out</Button>
     </Layout>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile
