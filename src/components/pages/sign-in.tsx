@@ -1,14 +1,12 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/button"
-import { Image } from "@/components/image"
-import { PageTransition } from "@/layouts/transition"
-import { useRouter } from "next/navigation"
-import { motion } from "framer-motion"
-import React from "react"
+import { Button } from "@/components/button";
+import { Image } from "@/components/image";
+import { PageTransition } from "@/layouts/transition";
+import { motion } from "framer-motion";
+import React from "react";
 
 const SignInPage = () => {
-  const { push } = useRouter()
   return (
     <PageTransition>
       <main className="h-screen">
@@ -42,14 +40,16 @@ const SignInPage = () => {
           </h1>
           {/*           </motion.div> */}
           <div className="flex flex-col gap-3">
-            <Button onClick={() => push("/reward")}>
-              <Image
-                src="/brand/strava.png"
-                alt="Google Login"
-                className="mr-3 h-[19px] w-[18px]"
-              />
-              Continue with Strava
-            </Button>
+            <a href="http://www.strava.com/oauth/authorize?client_id=131163&response_type=code&redirect_uri=http://localhost:3000/oauth/strava&approval_prompt=force&scope=read">
+              <Button className="w-full">
+                <Image
+                  src="/brand/strava.png"
+                  alt="Google Login"
+                  className="mr-3 h-[19px] w-[18px]"
+                />
+                Continue with Strava
+              </Button>
+            </a>
             <Button>
               <svg
                 className="text-white mr-3 mt-0.5"
@@ -67,7 +67,7 @@ const SignInPage = () => {
         </section>
       </main>
     </PageTransition>
-  )
-}
+  );
+};
 
-export default SignInPage
+export default SignInPage;
