@@ -1,130 +1,97 @@
 export const MOCK_DATA = [
-    {
-        id: 0,
-        time: 1722074945984,
-        distance: "10",
-        type: "Ride",
-        burnedcalories: "100",
-        points: "10",
+  {
+    id: 1,
+    type: "in",
+    name: "Morning Run",
+    created_at: "2024-07-27T07:30:00Z",
+    amount: 5,
+    metadata: {
+      calories: 300,
+      distance: 5,
+      elapsedTime: 1800,
+      type: "Run",
     },
-    {
-        id: 1,
-        time: 1722074945984,
-        distance: "8",
-        type: "Run",
-        burnedcalories: "100",
-        points: "10",
+  },
+  {
+    id: 2,
+    type: "in",
+    name: "Evening Ride",
+    created_at: "2024-07-26T18:00:00Z",
+    amount: 15,
+    metadata: {
+      calories: 600,
+      distance: 20,
+      elapsedTime: 3600,
+      type: "Ride",
     },
-    {
-        id: 2,
-        time: 1722074945984,
-        distance: "10",
-        type: "Ride",
-        burnedcalories: "100",
-        points: "10",
+  },
+  {
+    id: 3,
+    type: "out",
+    name: "Matcha Latte",
+    created_at: "2024-07-25T09:00:00Z",
+    amount: 3,
+    metadata: {
+      merchant: "Starbucks",
     },
-    {
-        id: 3,
-        time: 1722074945984,
-        distance: "8",
-        type: "Run",
-        burnedcalories: "100",
-        points: "10",
+  },
+  {
+    id: 4,
+    type: "out",
+    name: "Croissant",
+    created_at: "2024-07-24T14:30:00Z",
+    amount: 10,
+    metadata: {
+      merchant: "Kopi Tuku",
     },
-    {
-        id: 4,
-        time: 1722074945984,
-        distance: "10",
-        type: "Ride",
-        burnedcalories: "100",
-        points: "10",
+  },
+  {
+    id: 5,
+    type: "in",
+    name: "Weekend Run",
+    created_at: "2024-07-23T08:00:00Z",
+    amount: 7,
+    metadata: {
+      calories: 400,
+      distance: 7,
+      elapsedTime: 2400,
+      type: "Run",
     },
-    {
-        id: 5,
-        time: 1722074945984,
-        distance: "8",
-        type: "Run",
-        burnedcalories: "100",
-        points: "10",
+  },
+  {
+    id: 6,
+    type: "in",
+    name: "Nasi Panas",
+    created_at: "2024-07-22T12:00:00Z",
+    amount: 12,
+    metadata: {
+      merchant: "McDonalds",
     },
-    {
-        id: 6,
-        time: 1722074945984,
-        distance: "10",
-        type: "Ride",
-        burnedcalories: "100",
-        points: "10",
-    },
-    {
-        id: 7,
-        time: 1722074945984,
-        distance: "8",
-        type: "Run",
-        burnedcalories: "100",
-        points: "10",
-    },
-    {
-        id: 8,
-        time: 1722074945984,
-        distance: "10",
-        type: "Ride",
-        burnedcalories: "100",
-        points: "10",
-    },
-    {
-        id: 9,
-        time: 1722074945984,
-        distance: "8",
-        type: "Run",
-        burnedcalories: "100",
-        points: "10",
-    },
-    {
-        id: 10,
-        time: 1722074945984,
-        distance: "10",
-        type: "Ride",
-        burnedcalories: "100",
-        points: "10",
-    },
-    {
-        id: 11,
-        time: 1722074945984,
-        distance: "8",
-        type: "Run",
-        burnedcalories: "100",
-        points: "10",
-    },
-    {
-        id: 12,
-        time: 1722074945984,
-        distance: "10",
-        type: "Ride",
-        burnedcalories: "100",
-        points: "10",
-    },
-    {
-        id: 13,
-        time: 1722074945984,
-        distance: "8",
-        type: "Run",
-        burnedcalories: "100",
-        points: "10",
-    },
-    {
-        id: 14,
-        time: 1722074945984,
-        distance: "10",
-        type: "Ride",
-        burnedcalories: "100",
-        points: "10",
-    },
-    {
-        id: 15,
-        time: 1722074945984,
-        distance: "8",
-        type: "Run",
-        burnedcalories: "100",
-        points: "10",
-    },
+  },
 ]
+
+interface SportMetadata {
+  calories: number
+  distance: number
+  elapsedTime: number
+  type: "Run" | "Ride"
+}
+
+interface RewardMetadata {
+  merchant: string
+}
+
+export interface Activity {
+  id: number
+  type: "out" | "in"
+  name: string
+  created_at: string
+  amount: number
+  metadata: {
+    calories?: number
+    distance?: number
+    elapsedTime?: number
+    type?: string
+    merchant?: string
+  }
+}
