@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname, useRouter } from "next/navigation";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 
 interface AuthGuardProps {
   children: React.ReactNode;
@@ -9,28 +9,33 @@ interface AuthGuardProps {
 
 const AuthGuard: FC<AuthGuardProps> = ({ children }) => {
   const router = useRouter();
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState<boolean>(false);
 
   const pathname = usePathname();
 
-  const publicPath = [
-    "/sign-in",
-    "/oauth",
-  ]
-  const isPublic = publicPath.includes(pathname);
-
   useEffect(() => {
-    if (isPublic) {
-      setReady(true);
-      return;
+    const publicPath = [
+      "/sign-in",
+      "/oauth",
+    ]
+
+    // If current path is public, then setReady to True
+    for (const path of publicPath) {
+      if (pathname.startsWith(path)) {
+        setReady(true);
+        return;
+      }
     }
+
+    // If current path is not public, then check if user is authenticated
     const token = localStorage.getItem("token");
     if (!token) {
       router.replace("/sign-in");
-    } else {
-      setReady(true);
+      return;
     }
-  }, [router, isPublic]);
+
+    setReady(true);
+  }, [router, pathname]);
 
   return ready ? children : null;
 };

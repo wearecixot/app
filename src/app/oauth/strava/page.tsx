@@ -29,6 +29,7 @@ const OauthStrava = () => {
       return;
     }
 
+    setError(null);
     axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/auth/strava?code=${code}`)
       .then((res) => {
