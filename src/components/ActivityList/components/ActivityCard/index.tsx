@@ -3,6 +3,7 @@ import { Image } from "@/components/image"
 import { Activity } from "@/constants/mocks"
 import { cn } from "@/utils/cn"
 import { formatDate } from "@/utils/formatDate"
+import { randomInteger } from "@/utils/math"
 import {
   ArrowDownRight,
   ArrowUpLeft,
@@ -14,10 +15,6 @@ import {
   Timer,
 } from "lucide-react"
 import { FC } from "react"
-
-function randomInteger(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1)) + min
-}
 
 const ActivityCard: FC<Activity> = (props: Activity) => {
   const { date, time } = formatDate(new Date(props.created_at).getTime())

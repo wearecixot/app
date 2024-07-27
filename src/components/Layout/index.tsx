@@ -11,7 +11,7 @@ const Layout: FC<LayoutProps> = ({ children, className = "" }) => {
     <div className="h-screen flex flex-col">
       <div
         className={cn(
-          "w-full flex-1 overflow-x-hidden overflow-y-auto py-6 px-4",
+          "w-full flex-1 overflow-x-hidden overflow-y-auto py-6",
           className
         )}
       >
