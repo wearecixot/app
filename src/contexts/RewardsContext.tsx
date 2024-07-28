@@ -16,6 +16,7 @@ interface RewardsContextValue {
   activitiesListData: any;
   isActivitiesListLoading: boolean;
   mutateClaimPoints: (activityId: string) => void;
+  mutateRefreshActivitiesList: () => void;
 }
 
 const RewardsContext = createContext<RewardsContextValue | undefined>(
@@ -50,6 +51,15 @@ export const RewardsProvider: React.FC<RewardsProviderProps> = ({
     queryFn: () => axios.get("/reward/my-rewards"),
   })
 
+  const { mutate: mutateRefreshActivitiesList } = useMutation({
+    mutationFn: () => axios.post("/activities/add/random"),
+    onSuccess: () => {
+      refetchActivitiesList();
+      refetchActivityHeaders();
+      refetchMyRewards();
+    },
+  })
+
   const { data: activitiesListData, refetch: refetchActivitiesList, isLoading: isActivitiesListLoading } = useQuery({
     queryKey: ['activities-list'],
     queryFn: () => axios.get('/activities/list'),
@@ -76,6 +86,7 @@ export const RewardsProvider: React.FC<RewardsProviderProps> = ({
     activitiesListData,
     isActivitiesListLoading,
     mutateClaimPoints,
+    mutateRefreshActivitiesList,
   };
 
   return (

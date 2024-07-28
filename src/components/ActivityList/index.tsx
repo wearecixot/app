@@ -9,14 +9,23 @@ import { useRouter } from "next/navigation"
 
 const ActivityList: FC = () => {
   const router = useRouter()
-  const { activitiesListData, isActivitiesListLoading } = useRewardsContext()
+  const { activitiesListData, isActivitiesListLoading, mutateRefreshActivitiesList } = useRewardsContext()
 
   return (
     <section className="flex flex-col gap-4 px-4">
       <div className="flex items-center justify-between w-full">
         <p className="font-semibold text-xl">Activities</p>
 
-        {!!activitiesListData?.data.data && activitiesListData?.data.data.length > 0 ? <RefreshCcw size={14} /> : null}
+        {!!activitiesListData?.data.data && activitiesListData?.data.data.length > 0
+          ? (
+              <RefreshCcw
+                size={14}
+                className="cursor-pointer"
+                onClick={() => mutateRefreshActivitiesList()}
+              />
+            )
+          : null
+        }
       </div>
 
       {isActivitiesListLoading ? (
