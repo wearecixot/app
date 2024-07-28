@@ -18,6 +18,7 @@ import { FC } from "react"
 import { Button } from "../button"
 import { Progress } from "../progress"
 import { useRouter } from "next/navigation"
+import { formatNumber } from "@/utils/formatNumber"
 
 const Stats: FC = () => {
   const router = useRouter()
@@ -66,9 +67,9 @@ const Stats: FC = () => {
                   <div className="bg-green-800/10 w-[100px] h-10 rounded-md animate-pulse" />
                 ) : (
                   <p className="text-4xl font-bold text-green-500">
-                    {(
+                    {formatNumber(
                       activityHeadersData?.data?.data?.balance ?? 0
-                    ).toLocaleString()}
+                    )}
                   </p>
                 )}
               </div>
@@ -87,9 +88,9 @@ const Stats: FC = () => {
                   <div className="bg-green-800/10 w-[70px] h-6 rounded-md animate-pulse" />
                 ) : (
                   <p className="text-lg font-semibold text-green-500">
-                    {(
+                    {formatNumber(
                       activityHeadersData?.data?.data?.totalCalories ?? 0
-                    ).toLocaleString()}{" "}
+                    )}{" "}
                     kcal
                   </p>
                 )}
@@ -111,9 +112,9 @@ const Stats: FC = () => {
                   <div className="bg-green-800/10 w-[60px] h-6 rounded-md animate-pulse" />
                 ) : (
                   <p className="text-lg font-semibold text-green-500">
-                    {(
+                    {formatNumber(
                       activityHeadersData?.data?.data?.totalRun ?? 0
-                    ).toLocaleString()}
+                    )}
                   </p>
                 )}
               </div>
@@ -133,9 +134,9 @@ const Stats: FC = () => {
                   <div className="bg-green-800/10 w-[60px] h-6 rounded-md animate-pulse" />
                 ) : (
                   <p className="text-lg font-semibold text-green-500">
-                    {(
+                    {formatNumber(
                       activityHeadersData?.data?.data?.totalBicycle ?? 0
-                    ).toLocaleString()}
+                    )}
                   </p>
                 )}
               </div>
@@ -154,9 +155,9 @@ const Stats: FC = () => {
                   <div className="bg-green-800/10 w-[60px] h-6 rounded-md animate-pulse" />
                 ) : (
                   <p className="text-lg font-semibold text-green-500">
-                    {(
+                    {formatNumber(
                       activityHeadersData?.data?.data?.totalCommute ?? 0
-                    ).toLocaleString()}
+                    )}
                   </p>
                 )}
               </div>
