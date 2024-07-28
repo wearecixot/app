@@ -17,15 +17,26 @@ import Link from "next/link"
 import { FC } from "react"
 import { Button } from "../button"
 import { Progress } from "../progress"
+import { useRouter } from "next/navigation"
 
 const Stats: FC = () => {
   const { mutateRedeemRewards, isMutateRewardsPending, activityHeadersData } =
     useRewardsContext()
+  
+  const router = useRouter()
 
   const tier =
     REWARDS_TIER_DICT[
       activityHeadersData?.data?.data?.tier as keyof typeof REWARDS_TIER_DICT
     ]
+  
+    const handleOpenGift = () => {
+      if ((activityHeadersData?.data?.data?.balance ?? 0) >= 100) {
+        mutateRedeemRewards()
+      } else {
+        router.push("stravaride://")
+      }
+    }
 
   return (
     <div className="px-4">
@@ -121,11 +132,13 @@ const Stats: FC = () => {
             variant="plain"
             size="lg"
             className="bg-green-500 hover:bg-green-600 w-full text-white"
-            onClick={() => mutateRedeemRewards()}
+            onClick={handleOpenGift}
             isLoading={isMutateRewardsPending}
           >
             <Gift size={20} className="mr-2" />
-            Open Gift
+            {(activityHeadersData?.data?.data?.balance ?? 0) >= 100
+              ? "Open Gift"
+              : "Open Strava"}
           </Button>
         </div>
 
