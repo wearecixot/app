@@ -13,8 +13,25 @@ import { X } from "lucide-react"
 import { Ticket } from "lucide-react"
 import { TicketPercent } from "lucide-react"
 
-const RewardCard: FC = () => {
-  const id = React.useId()
+interface RewardCardProps {
+  code: string
+  expiredDate: string
+  id: string
+  media: string
+  merchant: string
+  name: string
+  tier: string
+}
+const RewardCard: FC<RewardCardProps> = ({
+  code,
+  expiredDate,
+  id,
+  media,
+  merchant,
+  name,
+  tier,
+}) => {
+  // const id = React.useId()
   const twodaysfromtoday = new Date(
     new Date().setDate(new Date().getDate() + randomInteger(1, 10))
   )
@@ -25,22 +42,22 @@ const RewardCard: FC = () => {
         <div className="h-fit max-h-[250px] min-w-[200px] overflow-hidden flex flex-col rounded-md drop-shadow-md bg-white">
           <div className="text-center overflow-hidden h-[100px] w-full aspect-square relative">
             <Image
-              src="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg"
+              src={media}
               alt="Profile picture"
               className="object-cover"
               fill
             />
           </div>
           <div className="flex flex-col gap-1 p-2.5">
-            <p className="font-semibold">Mochacino</p>
+            <p className="font-semibold">{name}</p>
             <div className="flex items-center gap-1  opacity-50">
               <Store size={14} />
-              <p className="text-sm font-medium">Starbucks</p>
+              <p className="text-sm font-medium">{merchant}</p>
             </div>
             <div className="flex items-center gap-1  opacity-50">
               <Timer size={14} />
               <p className="text-sm font-medium">
-                Expired {getRelativeTimeString(twodaysfromtoday)}
+                Expired {getRelativeTimeString(new Date(expiredDate))}
               </p>
             </div>
             <Button
@@ -58,7 +75,7 @@ const RewardCard: FC = () => {
         <div className="relative">
           <div className="text-center overflow-hidden h-[150px] over w-full aspect-square relative">
             <Image
-              src="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg"
+              src={media}
               alt="Profile picture"
               className="object-cover"
               fill
@@ -76,20 +93,20 @@ const RewardCard: FC = () => {
         </div>
         <div className="flex flex-col gap-3 px-4 pb-4">
           <div className="flex flex-col gap-1.5">
-            <p className="font-semibold">Mochacino</p>
+            <p className="font-semibold">{name}</p>
             <div className="flex items-center gap-1  opacity-50">
               <Store size={14} />
-              <p className="text-sm font-medium">Starbucks</p>
+              <p className="text-sm font-medium">{merchant}</p>
             </div>
             <div className="flex items-center gap-1  opacity-50">
               <Timer size={14} />
               <p className="text-sm font-medium">
-                Expired {getRelativeTimeString(twodaysfromtoday)}
+                Expired {getRelativeTimeString(new Date(expiredDate))}
               </p>
             </div>
             <p className="p-2 mt-2 relative bg-black/5 flex border-[1px] border-black/10 items-center w-full justify-center gap-2 rounded-md font-mono text-center">
               <TicketPercent size={14} className="opacity-50 absolute left-3" />
-              <span>1232</span>
+              <span>{code}</span>
             </p>
           </div>
           <Button size="lg" onClick={() => setIsOpen(false)}>

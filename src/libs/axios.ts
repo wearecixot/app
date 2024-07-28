@@ -7,7 +7,6 @@ const instance = axiosPrimitive.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
-    timeout: 1000,
     ...(parseCookies().token && { Authorization: `Bearer ${parseCookies().token}` })
   },
 })
