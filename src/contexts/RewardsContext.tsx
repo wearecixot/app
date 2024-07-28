@@ -56,7 +56,7 @@ export const RewardsProvider: React.FC<RewardsProviderProps> = ({
   })
 
   const { mutate: mutateClaimPoints } = useMutation({
-    mutationFn: (activityId: string) => axios.post(`/claim-points/${activityId}`),
+    mutationFn: (activityId: string) => axios.post(`/activities/claim-points/${activityId}`),
     onSuccess: () => {
       refetchMyRewards();
       refetchActivitiesList();
