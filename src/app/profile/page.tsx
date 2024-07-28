@@ -6,9 +6,12 @@ import Image from "next/image"
 import { ChevronRight } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { destroyCookie } from "nookies"
+import { useProfileContext } from "@/contexts/ProfileContext"
 
 const Profile = () => {
   const router = useRouter();
+
+  const { profileData } = useProfileContext();
 
   const logout = () => {
     destroyCookie(null, "token");
@@ -27,36 +30,28 @@ const Profile = () => {
           />
         </div>
         <p className="mt-4 text-lg font-semibold leading-none">
-          Vincent Suryakim
+          {profileData?.data.data.fullName}
         </p>
         <p className="mt-2 text-sm text-gray-500 leading-none">
-          @vincentsuryakim
+          @{profileData?.data.data.userName}
         </p>
       </div>
       <div className="flex justify-evenly">
         <div className="text-center flex flex-col items-center">
-          <p className="text-sm font-bold">1.446</p>
+          <p className="text-sm font-bold">{profileData?.data.data.points}</p>
           <p className="text-xs">Points</p>
         </div>
         <div className="text-center flex flex-col items-center">
-          <p className="text-sm font-bold">1.762</p>
+          <p className="text-sm font-bold">{profileData?.data.data.redeemedRewards}</p>
           <p className="text-xs">Rewards</p>
         </div>
       </div>
-      <Button variant="outline" onClick={() => router.push("/profile/edit")}>
-        Edit Profile
-      </Button>
-      <div className="border border-gray-300 cursor-pointer rounded-lg">
-        <div className="flex p-4 border-b border-gray-200">
-          <p className="text-sm flex-1">Terms of Service</p>
-          <ChevronRight className="w-4 h-4" />
-        </div>
-        <div className="flex p-4 border-gray-300">
-          <p className="text-sm flex-1">Privacy Policy</p>
-          <ChevronRight className="w-4 h-4" />
-        </div>
+      <div className="flex flex-col gap-2">
+        <Button variant="outline" onClick={() => router.push("/profile/edit")}>
+          Edit Profile
+        </Button>
+        <Button variant="destructive" onClick={logout}>Sign Out</Button>
       </div>
-      <Button variant="destructive" onClick={logout}>Sign Out</Button>
     </Layout>
   )
 }

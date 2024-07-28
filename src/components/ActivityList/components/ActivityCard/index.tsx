@@ -1,6 +1,7 @@
 import { Button } from "@/components/button"
 import { Image } from "@/components/image"
 import { Activity } from "@/constants/mocks"
+import { useRewardsContext } from "@/contexts/RewardsContext"
 import { cn } from "@/utils/cn"
 import { formatDate } from "@/utils/formatDate"
 import { randomInteger } from "@/utils/math"
@@ -22,11 +23,12 @@ import React, { FC } from "react"
 
 const ActivityCard: FC<Activity> = (props: Activity) => {
   const { date, time } = formatDate(new Date(props.created_at).getTime())
+  const { mutateClaimPoints } = useRewardsContext()
   return (
     <section className="flex items-start w-full gap-3">
       <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center relative">
         {props.is_claimed ? (
-          props.type === "in" ? (
+          props.type === "IN" ? (
             <div className="w-6 h-6 flex items-center justify-center text-white bg-green-500 absolute z-10 -top-2.5 -left-2.5 rounded-full border-[3px] border-white">
               <ArrowDownRight size={12} />
             </div>
@@ -36,11 +38,11 @@ const ActivityCard: FC<Activity> = (props: Activity) => {
             </div>
           )
         ) : null}
-        {props.metadata.type === "Run" ? (
+        {props.metadata.type === "RUN" ? (
           <Footprints className="text-white" size={16} />
-        ) : props.metadata.type === "Ride" ? (
+        ) : props.metadata.type === "BICYCLE" ? (
           <Bike className="text-white" size={16} />
-        ) : props.metadata.type === "Commute" ? (
+        ) : props.metadata.type === "PUBLIC_TRANSPORT" ? (
           <TrainFront className="text-white" size={16} />
         ) : (
           <TicketCheck className="text-white" size={16} />
@@ -56,11 +58,11 @@ const ActivityCard: FC<Activity> = (props: Activity) => {
           {props.is_claimed ? (
             <div
               className={cn("flex ml-auto items-center gap-1 ", {
-                "text-green-600 fill-green-200": props.type === "in",
-                "text-red-600 fill-red-200": props.type === "out",
+                "text-green-600 fill-green-200": props.type === "IN",
+                "text-red-600 fill-red-200": props.type === "OUT",
               })}
             >
-              {props.type === "in" ? <p>+</p> : <p>-</p>}
+              {props.type === "IN" ? <p>+</p> : <p>-</p>}
               <Coins fill size={14} />
               <p className="text-sm font-medium">
                 {randomInteger(1, 100)} points
@@ -70,11 +72,11 @@ const ActivityCard: FC<Activity> = (props: Activity) => {
         </div>
 
         <div className="flex flex-col">
-          {props.metadata.type === "Run" ||
-          props.metadata.type === "Ride" ||
-          props.metadata.type === "Commute" ? (
+          {props.metadata.type === "RUN" ||
+          props.metadata.type === "BICYCLE" ||
+          props.metadata.type === "PUBLIC_TRANSPORT" ? (
             <div className="flex flex-item gap-2">
-              {props.metadata.type === "Commute" ? (
+              {props.metadata.type === "PUBLIC_TRANSPORT" ? (
                 <React.Fragment>
                   <div className="flex items-center gap-0.5 opacity-50">
                     <ArrowDownRight size={14} />
@@ -121,6 +123,7 @@ const ActivityCard: FC<Activity> = (props: Activity) => {
             variant="plain"
             size="lg"
             className="bg-green-500 flex items-center gap-1 rounded-lg mt-2 hover:bg-green-600 text-white"
+            onClick={() => mutateClaimPoints(props.id)}
           >
             <Coins fill size={14} className="text-white fill-green-500" />
             Claim {props.amount} points

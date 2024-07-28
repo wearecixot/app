@@ -104,7 +104,7 @@ export const MOCK_DATA = [
 ]
 
 export interface Activity {
-  id: number
+  id: string
   type: string
   name: string
   created_at: string
@@ -115,7 +115,6 @@ export interface Activity {
     out?: string
     calories?: number
     distance?: number
-    elapsedTime?: number
     type?: string
     merchant?: string
   }

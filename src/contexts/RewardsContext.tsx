@@ -11,6 +11,11 @@ interface RewardsContextValue {
   isActivityHeadersLoading: boolean;
   showConfetti: boolean;
   setShowConfetti: (showConfetti: boolean) => void;
+  myRewardsData: any;
+  isMyRewardsLoading: boolean;
+  activitiesListData: any;
+  isActivitiesListLoading: boolean;
+  mutateClaimPoints: (activityId: string) => void;
 }
 
 const RewardsContext = createContext<RewardsContextValue | undefined>(
@@ -24,10 +29,13 @@ export const RewardsProvider: React.FC<RewardsProviderProps> = ({
   children,
 }) => {
   const [showConfetti, setShowConfetti] = useState<boolean>(false);
+
   const { mutate: mutateRedeemRewards, isPending: isMutateRewardsPending } = useMutation({
     mutationFn: () => axios.post("/reward/redeem"),
     onSuccess: () => {
       refetchActivityHeaders();
+      refetchMyRewards();
+      refetchActivitiesList();
       setShowConfetti(true);
     },
   });
@@ -37,6 +45,25 @@ export const RewardsProvider: React.FC<RewardsProviderProps> = ({
     queryFn: () => axios.get("/activities/header"),
   });
 
+  const { data: myRewardsData, refetch: refetchMyRewards, isLoading: isMyRewardsLoading } = useQuery({
+    queryKey: ["my-rewards"],
+    queryFn: () => axios.get("/reward/my-rewards"),
+  })
+
+  const { data: activitiesListData, refetch: refetchActivitiesList, isLoading: isActivitiesListLoading } = useQuery({
+    queryKey: ['activities-list'],
+    queryFn: () => axios.get('/activities/list'),
+  })
+
+  const { mutate: mutateClaimPoints } = useMutation({
+    mutationFn: (activityId: string) => axios.post(`/claim-points/${activityId}`),
+    onSuccess: () => {
+      refetchMyRewards();
+      refetchActivitiesList();
+      refetchActivityHeaders();
+    },
+  })
+
   const value: RewardsContextValue = {
     mutateRedeemRewards,
     isMutateRewardsPending,
@@ -44,6 +71,11 @@ export const RewardsProvider: React.FC<RewardsProviderProps> = ({
     isActivityHeadersLoading,
     showConfetti,
     setShowConfetti,
+    myRewardsData,
+    isMyRewardsLoading,
+    activitiesListData,
+    isActivitiesListLoading,
+    mutateClaimPoints,
   };
 
   return (

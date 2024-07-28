@@ -3,23 +3,19 @@
 import React, { FC } from "react"
 import RewardCard from "./components/RewardCard"
 import { Ticket } from "lucide-react"
-import { useQuery } from "@tanstack/react-query"
-import axios from "@/libs/axios"
+import { useRewardsContext } from "@/contexts/RewardsContext"
 
 const RewardList: FC = () => {
-  const { data } = useQuery({
-    queryKey: ["my-rewards"],
-    queryFn: () => axios.get("/reward/my-rewards"),
-  })
+  const { myRewardsData, isMyRewardsLoading } = useRewardsContext()
 
   return (
     <section className="flex flex-col gap relative">
       <p className="font-semibold text-xl px-4">Rewards</p>
-      {data?.data.data.length > 0 ? (
+      {myRewardsData?.data.data.length > 0 ? (
         <React.Fragment>
           <div className="h-full w-[15px] bg-gradient-to-r from-white to-transparent absolute top-0 left-0 z-10" />
           <div className="flex gap-4 overflow-x-scroll p-4">
-            {data?.data.data.map((reward: any) => (
+            {myRewardsData?.data.data.map((reward: any) => (
               <RewardCard key={reward.id} {...reward} />
             ))}
           </div>
