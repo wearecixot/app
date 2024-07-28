@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/button";
-import { Image } from "@/components/image";
-import { PageTransition } from "@/layouts/transition";
-import { motion } from "framer-motion";
-import React from "react";
+import { Button } from "@/components/button"
+import { Image } from "@/components/image"
+import { PageTransition } from "@/layouts/transition"
+import { motion } from "framer-motion"
+import React from "react"
 
 const SignInPage = () => {
   return (
@@ -36,7 +36,7 @@ const SignInPage = () => {
             }}
           > */}
           <h1 className="text-5xl font-semibold">
-            Welcome to <br /> Hidup Sehat!
+            Welcome to <br /> Calorcity!
           </h1>
           {/*           </motion.div> */}
           <div className="flex flex-col gap-3">
@@ -67,7 +67,7 @@ const SignInPage = () => {
         </section>
       </main>
     </PageTransition>
-  );
-};
+  )
+}
 
-export default SignInPage;
+export default SignInPage

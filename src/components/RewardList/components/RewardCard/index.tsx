@@ -52,7 +52,7 @@ const RewardCard: FC<RewardCardProps> = ({
             <p className="font-semibold">{name}</p>
             <div className="flex items-center gap-1  opacity-50">
               <Store size={14} />
-              <p className="text-sm font-medium">{merchant}</p>
+              <p className="text-sm font-medium">{merchant.split(" ")[1]}</p>
             </div>
             <div className="flex items-center gap-1  opacity-50">
               <Timer size={14} />
