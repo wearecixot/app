@@ -126,7 +126,7 @@ const ActivityCard: FC<Activity> = (props: Activity) => {
             onClick={() => mutateClaimPoints(props.id)}
           >
             <Coins fill size={14} className="text-white fill-green-500" />
-            Claim {props.amount} points
+            Claim {props.amount.toFixed(0)} points
           </Button>
         )}
       </div>
