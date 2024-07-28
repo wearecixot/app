@@ -1,28 +1,39 @@
 "use client"
 
+import { REWARDS_TIER_DICT } from "@/constants/rewards"
+import { useRewardsContext } from "@/contexts/RewardsContext"
+import { cn } from "@/utils/cn"
+import {
+  ArrowRight,
+  Badge,
+  Bike,
+  Coins,
+  Flame,
+  Footprints,
+  Gift,
+  TrainFront,
+} from "lucide-react"
+import Link from "next/link"
 import { FC } from "react"
 import { Button } from "../button"
-import { Coins } from "lucide-react"
-import { Flame } from "lucide-react"
-import { Gift } from "lucide-react"
-import { GitCommitVertical } from "lucide-react"
-import { Timer } from "lucide-react"
-import { Badge } from "lucide-react"
-import Link from "next/link"
 import { Progress } from "../progress"
-import { ArrowRight } from "lucide-react"
-import { useRewardsContext } from "@/contexts/RewardsContext"
-import { Footprints } from "lucide-react"
-import { Bike } from "lucide-react"
-import { TrainFront } from "lucide-react"
-import { REWARDS_TIER_DICT } from "@/constants/rewards"
 
 const Stats: FC = () => {
   const { mutateRedeemRewards, isMutateRewardsPending, activityHeadersData } =
     useRewardsContext()
+
+  const tier =
+    REWARDS_TIER_DICT[
+      activityHeadersData?.data?.data?.tier as keyof typeof REWARDS_TIER_DICT
+    ]
+
   return (
     <div className="px-4">
-      <section className="flex flex-col gap-2 p-2 w-full rounded-lg border-[1px] border-green-700/10 bg-green-600/10 drop-shadow-xl">
+      <section
+        className={
+          "flex flex-col gap-2 p-2 w-full rounded-lg border-[1px] bg-black/5 drop-shadow-xl"
+        }
+      >
         <div className="flex flex-col gap-4 p-3 rounded-b-lg bg-white rounded-md">
           <div className="flex items-start justify-between">
             <div className="flex flex-col gap-1">
@@ -125,20 +136,30 @@ const Stats: FC = () => {
           <div className="relative flex items-center justify-center text-center">
             <Badge
               size={36}
-              className=" text-green-600 fill-green-200 drop-shadow-md"
+              className={cn(" drop-shadow-md", {
+                "text-amber-700 fill-amber-300": tier === 1 || tier === 3,
+                "text-gray-700 fill-gray-300": tier === 2,
+              })}
             />
-            <p className="absolute z-10 text-md m-auto text-xs text-green-600">
-              {
-                REWARDS_TIER_DICT[
-                  activityHeadersData?.data?.data
-                    ?.tier as keyof typeof REWARDS_TIER_DICT
-                ]
-              }
+            <p
+              className={cn(
+                "absolute z-10 text-md m-auto text-xs text-green-600",
+                {
+                  "text-amber-600": tier === 1 || tier === 3,
+                  "text-gray-700": tier === 2,
+                }
+              )}
+            >
+              {tier}
             </p>
           </div>
           <div className="flex flex-col gap-2 w-full">
-            <p className="text-sm font-medium text-green-900/50">Level</p>
+            <p className="text-sm font-medium text-black/50">Level</p>
             <Progress
+              classNames={{
+                root: tier === 2 ? "bg-gray-700/20" : "bg-amber-700/20",
+                indicator: tier === 2 ? "bg-gray-700" : "bg-amber-700",
+              }}
               value={Math.min(
                 100,
                 (activityHeadersData?.data?.data?.tierProgress ?? 0) * 10
@@ -146,7 +167,7 @@ const Stats: FC = () => {
               className="w-full"
             />
           </div>
-          <ArrowRight className="my-auto text-green-600" />
+          <ArrowRight className={cn("my-auto text-black/50")} />
         </Link>
       </section>
     </div>
