@@ -213,11 +213,15 @@ const Stats: FC = () => {
                   "absolute z-10 text-md m-auto text-xs text-green-600",
                   {
                     "text-amber-600": tier === 1 || tier === 3,
-                    "text-gray-700": tier === 2,
+                    "text-gray-700":
+                      (activityHeadersData?.data?.data?.balance ?? 0) < 100 ||
+                      tier === 2,
                   }
                 )}
               >
-                {tier}
+                {(activityHeadersData?.data?.data?.balance ?? 0) < 100
+                  ? 0
+                  : tier}
               </p>
             )}
           </div>
@@ -228,8 +232,18 @@ const Stats: FC = () => {
             ) : (
               <Progress
                 classNames={{
-                  root: tier === 2 ? "bg-gray-700/20" : "bg-amber-700/20",
-                  indicator: tier === 2 ? "bg-gray-700" : "bg-amber-700",
+                  root:
+                    (activityHeadersData?.data?.data?.balance ?? 0) < 100
+                      ? "bg-black/10"
+                      : tier === 2
+                      ? "bg-gray-700/20"
+                      : "bg-amber-700/20",
+                  indicator:
+                    (activityHeadersData?.data?.data?.balance ?? 0) < 100
+                      ? "bg-black/10"
+                      : tier === 2
+                      ? "bg-gray-700"
+                      : "bg-amber-700",
                 }}
                 value={Math.min(
                   100,
