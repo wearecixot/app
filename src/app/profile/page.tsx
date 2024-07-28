@@ -3,10 +3,10 @@
 import { Button } from "@/components/button"
 import Layout from "@/components/Layout"
 import Image from "next/image"
-import { ChevronRight } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { destroyCookie } from "nookies"
 import { useProfileContext } from "@/contexts/ProfileContext"
+import { formatNumber } from "@/utils/formatNumber"
 
 const Profile = () => {
   const router = useRouter();
@@ -38,11 +38,11 @@ const Profile = () => {
       </div>
       <div className="flex justify-evenly">
         <div className="text-center flex flex-col items-center">
-          <p className="text-sm font-bold">{profileData?.data.data.points}</p>
+          <p className="text-sm font-bold">{formatNumber(profileData?.data.data.points)}</p>
           <p className="text-xs">Points</p>
         </div>
         <div className="text-center flex flex-col items-center">
-          <p className="text-sm font-bold">{profileData?.data.data.redeemedRewards}</p>
+          <p className="text-sm font-bold">{formatNumber(profileData?.data.data.redeemedRewards)}</p>
           <p className="text-xs">Rewards</p>
         </div>
       </div>

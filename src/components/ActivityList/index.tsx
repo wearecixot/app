@@ -16,7 +16,7 @@ const ActivityList: FC = () => {
       <div className="flex items-center justify-between w-full">
         <p className="font-semibold text-xl">Activities</p>
 
-        {!!activitiesListData?.data.data ? <RefreshCcw size={14} /> : null}
+        {!!activitiesListData?.data.data && activitiesListData?.data.data.length > 0 ? <RefreshCcw size={14} /> : null}
       </div>
 
       {isActivitiesListLoading ? (
@@ -48,7 +48,7 @@ const ActivityList: FC = () => {
             </div>
           </section>
         </div>
-      ) : !!activitiesListData?.data.data ? (
+      ) : !!activitiesListData?.data.data && activitiesListData?.data.data.length > 0 ? (
         <div className="flex flex-col gap-4">
           {activitiesListData?.data.data.map((activity: any) => (
             <ActivityCard
