@@ -1,6 +1,8 @@
 # Calorcity
 
-Calorcity is a web application that encourages sustainable living by rewarding users for eco-friendly activities such as running, biking, and using public transportation.
+Calorcity is a web application dedicated to promoting sustainable living by rewarding users for eco-friendly activities such as running, biking, and using public transportation. Brands can allocate their marketing funds more effectively by partnering with Calorcity. Instead of spending money on untargeted ads, brands can invest in our app to create incentives that encourage sustainable behaviors.
+
+Additionally, brands can use Calorcity to allocate funds for Corporate Social Responsibility (CSR) and Environmental, Social, and Governance (ESG) initiatives. By supporting our app, brands can not only enhance their marketing efforts but also fulfill their CSR and ESG goals. This approach helps the environment, engages a highly targeted and environmentally conscious audience, and demonstrates a commitment to sustainability, enhancing brand image and fostering customer loyalty.
 
 ## Features
 
