@@ -5,12 +5,7 @@ import { Bike, RefreshCcw } from "lucide-react"
 import { FC } from "react"
 import { Button } from "../button"
 import ActivityCard from "./components/ActivityCard"
-import { MOCK_DATA } from "@/constants/mocks"
-import { Ticket } from "lucide-react"
-import { Bike } from "lucide-react"
-import { Button } from "../button"
-import { RefreshCcw } from "lucide-react"
-import { useRewardsContext } from "@/contexts/RewardsContext"
+import { useRouter } from "next/navigation"
 
 const ActivityList: FC = () => {
   const router = useRouter()
