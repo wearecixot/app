@@ -11,7 +11,11 @@ import { RefreshCcw } from "lucide-react"
 const ActivityList: FC = () => {
   return (
     <section className="flex flex-col gap-4 px-4">
-      <p className="font-semibold text-xl">Activities</p>
+      <div className="flex items-center justify-between w-full">
+        <p className="font-semibold text-xl">Activities</p>
+
+        <RefreshCcw size={14} />
+      </div>
 
       <div className="w-full p-4 text-center rounded-md bg-gray-50 border-[1px] flex flex-col gap-1.5 justify-center items-center">
         <Bike size={24} className="opacity-50" />
@@ -22,11 +26,11 @@ const ActivityList: FC = () => {
         </p>
         <div className="flex flex-col gap-1.5 w-full">
           <Button size="lg" className="mt-2 w-full">
-            <RefreshCcw size={12} className="mr-2" />
+            <RefreshCcw size={14} className="mr-2" />
             Refresh
           </Button>
           <Button size="lg" variant={"secondary"} className="mt-2 w-full">
-            <Bike size={12} className="mr-2" />
+            <Bike size={14} className="mr-2" />
             Add Manual
           </Button>
         </div>

@@ -124,7 +124,7 @@ const Stats: FC = () => {
             onClick={() => mutateRedeemRewards()}
             isLoading={isMutateRewardsPending}
           >
-            <Gift size={22} className="mr-2" />
+            <Gift size={20} className="mr-2" />
             Open Gift
           </Button>
         </div>
