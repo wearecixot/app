@@ -9,8 +9,8 @@ import MainProvider from "@/contexts"
 import ConfettiLayer from "@/components/ConfettiLayer"
 
 export const metadata: Metadata = {
-  title: "Hidup Sehat",
-  description: "Hidup Sehat Bahagia",
+  title: "Calorcity",
+  description: "Calorcity",
 }
 
 export default function RootLayout({
@@ -25,9 +25,7 @@ export default function RootLayout({
           <MainProvider>
             <Theme className="w-full h-full overflow-x-hidden">
               <AuthGuard>
-                <ConfettiLayer>
-                  {children}
-                </ConfettiLayer>
+                <ConfettiLayer>{children}</ConfettiLayer>
               </AuthGuard>
             </Theme>
           </MainProvider>

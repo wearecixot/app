@@ -31,15 +31,12 @@ const RewardCard: FC<RewardCardProps> = ({
   name,
   tier,
 }) => {
-  // const id = React.useId()
-  const twodaysfromtoday = new Date(
-    new Date().setDate(new Date().getDate() + randomInteger(1, 10))
-  )
   const [isOpen, setIsOpen] = React.useState(false)
+
   return (
     <Dialog.Root key={id} open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
-        <div className="h-full max-h-[250px] min-w-[200px] overflow-hidden flex flex-col rounded-md drop-shadow-md bg-white">
+        <div className="h-full shadow-md max-h-[250px] min-w-[200px] overflow-hidden flex flex-col rounded-md drop-shadow-md bg-white">
           <div className="text-center overflow-hidden h-[100px] w-full aspect-square relative">
             <Image
               src={media}
@@ -52,7 +49,7 @@ const RewardCard: FC<RewardCardProps> = ({
             <p className="font-semibold">{name}</p>
             <div className="flex items-center gap-1  opacity-50">
               <Store size={14} />
-              <p className="text-sm font-medium">{merchant}</p>
+              <p className="text-sm font-medium">{merchant.split(" ")[1]}</p>
             </div>
             <div className="flex items-center gap-1  opacity-50">
               <Timer size={14} />

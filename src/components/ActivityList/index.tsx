@@ -14,7 +14,11 @@ const ActivityList: FC = () => {
 
   return (
     <section className="flex flex-col gap-4 px-4">
-      <p className="font-semibold text-xl">Activities</p>
+      <div className="flex items-center justify-between w-full">
+        <p className="font-semibold text-xl">Activities</p>
+
+        <RefreshCcw size={14} />
+      </div>
 
       {!!activitiesListData?.data.data ? (
         <div className="flex flex-col gap-4">
