@@ -40,7 +40,7 @@ const SignInPage = () => {
           </h1>
           {/*           </motion.div> */}
           <div className="flex flex-col gap-3">
-            <a href="http://www.strava.com/oauth/authorize?client_id=131182&response_type=code&redirect_uri=http://localhost:3000/oauth/strava&approval_prompt=force&scope=read">
+            <a href="http://www.strava.com/oauth/authorize?client_id=131182&response_type=code&redirect_uri=https://calorcity.vercel.app/oauth/strava&approval_prompt=force&scope=read">
               <Button className="w-full">
                 <Image
                   src="/brand/strava.png"
