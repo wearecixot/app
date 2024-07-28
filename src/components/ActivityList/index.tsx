@@ -55,25 +55,25 @@ const ActivityList: FC = () => {
               key={activity.id}
               id={activity.id}
               type={activity.type}
-              name={activity.activity}
+              name={activity.name}
               created_at={activity.createdAt}
-              amount={activity.pointAmount}
-              is_claimed={activity.isPointClaimed}
+              amount={activity.amount}
+              is_claimed={activity.isClaimed}
               metadata={{
-                ...(!!activity.activityData?.in && {
-                  in: activity.activityData.in,
+                ...(!!activity.metadata?.in && {
+                  in: activity.metadata.in,
                 }),
-                ...(!!activity.activityData?.out && {
-                  out: activity.activityData.out,
+                ...(!!activity.metadata?.out && {
+                  out: activity.metadata.out,
                 }),
-                ...(!!activity.activityData?.calories && {
-                  calories: activity.activityData.calories,
+                ...(!!activity.metadata?.calories && {
+                  calories: activity.metadata.calories,
                 }),
-                ...(!!activity.activityData?.distance && {
-                  distance: activity.activityData.distance,
+                ...(!!activity.metadata?.distance && {
+                  distance: activity.metadata.distance,
                 }),
-                type: activity.activity,
-                merchant: activity.activityData?.merchant ?? "",
+                type: activity.metadata?.type ?? "",
+                merchant: activity.metadata?.merchant ?? "",
               }}
             />
           ))}
