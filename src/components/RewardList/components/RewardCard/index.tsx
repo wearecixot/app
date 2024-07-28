@@ -39,7 +39,7 @@ const RewardCard: FC<RewardCardProps> = ({
   return (
     <Dialog.Root key={id} open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
-        <div className="h-fit max-h-[250px] min-w-[200px] overflow-hidden flex flex-col rounded-md drop-shadow-md bg-white">
+        <div className="h-full max-h-[250px] min-w-[200px] overflow-hidden flex flex-col rounded-md drop-shadow-md bg-white">
           <div className="text-center overflow-hidden h-[100px] w-full aspect-square relative">
             <Image
               src={media}
@@ -48,7 +48,7 @@ const RewardCard: FC<RewardCardProps> = ({
               fill
             />
           </div>
-          <div className="flex flex-col gap-1 p-2.5">
+          <div className="flex flex-col h-full gap-1 p-2.5">
             <p className="font-semibold">{name}</p>
             <div className="flex items-center gap-1  opacity-50">
               <Store size={14} />
@@ -62,7 +62,7 @@ const RewardCard: FC<RewardCardProps> = ({
             </div>
             <Button
               size="sm"
-              className="mt-1.5"
+              className="mt-auto"
               onClick={() => setIsOpen(false)}
             >
               <Ticket size={12} className="mr-2" />
