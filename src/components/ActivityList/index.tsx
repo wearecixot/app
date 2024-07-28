@@ -5,8 +5,15 @@ import { Bike, RefreshCcw } from "lucide-react"
 import { FC } from "react"
 import { Button } from "../button"
 import ActivityCard from "./components/ActivityCard"
+import { MOCK_DATA } from "@/constants/mocks"
+import { Ticket } from "lucide-react"
+import { Bike } from "lucide-react"
+import { Button } from "../button"
+import { RefreshCcw } from "lucide-react"
+import { useRewardsContext } from "@/contexts/RewardsContext"
 
 const ActivityList: FC = () => {
+  const router = useRouter()
   const { activitiesListData, isActivitiesListLoading } = useRewardsContext()
 
   return (
@@ -85,11 +92,20 @@ const ActivityList: FC = () => {
             commuting)
           </p>
           <div className="flex flex-col gap-1.5 w-full">
-            <Button size="lg" className="mt-2 w-full">
+            <Button
+              size="lg"
+              className="mt-2 w-full"
+              onClick={() => router.refresh()}
+            >
               <RefreshCcw size={12} className="mr-2" />
               Refresh
             </Button>
-            <Button size="lg" variant={"secondary"} className="mt-2 w-full">
+            <Button
+              size="lg"
+              variant={"secondary"}
+              className="mt-2 w-full"
+              onClick={() => router.push("/add")}
+            >
               <Bike size={12} className="mr-2" />
               Add Manual
             </Button>
