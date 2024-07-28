@@ -11,7 +11,7 @@ const Salutation: FC = () => {
       <Link href="/profile">
         <div className="rounded-full shrink-0 h-10 aspect-square relative overflow-hidden">
           <Image
-            src="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg"
+            src="https://pbs.twimg.com/profile_images/899773129412587520/IH7_EA3E_400x400.jpg"
             alt="Profile picture"
             className="object-cover"
             fill
