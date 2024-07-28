@@ -1,6 +1,6 @@
 # Calorcity
 
-Calorcity is a mobile application that encourages sustainable living by rewarding users for eco-friendly activities such as running, biking, and using public transportation.
+Calorcity is a web application that encourages sustainable living by rewarding users for eco-friendly activities such as running, biking, and using public transportation.
 
 ## Features
 
