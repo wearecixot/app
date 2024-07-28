@@ -1,5 +1,5 @@
 export const formatNumber = (number: number | string): string => {
-  const stringNumber = number.toString().replace(/\D/g, '');
+  const stringNumber = (number ?? 0).toString().replace(/\D/g, '');
   
   return stringNumber.split('').reverse().reduce((acc, digit, index) => {
     if (index > 0 && index % 3 === 0) {

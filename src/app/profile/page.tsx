@@ -23,7 +23,7 @@ const Profile = () => {
       <div className="flex flex-col items-center">
         <div className="rounded-full text-center overflow-hidden h-24 aspect-square relative">
           <Image
-            src="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg"
+            src="https://pbs.twimg.com/profile_images/899773129412587520/IH7_EA3E_400x400.jpg"
             alt="Profile picture"
             className="object-cover"
             fill
