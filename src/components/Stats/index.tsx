@@ -48,7 +48,9 @@ const Stats: FC = () => {
                 />
 
                 <p className="text-4xl font-bold text-green-500">
-                  {activityHeadersData?.data?.data?.balance ?? 0}
+                  {(
+                    activityHeadersData?.data?.data?.balance ?? 0
+                  ).toLocaleString()}
                 </p>
               </div>
             </div>
@@ -63,7 +65,10 @@ const Stats: FC = () => {
                   className="mt-1.5 text-green-600 fill-green-100"
                 />
                 <p className="text-lg font-semibold text-green-500">
-                  {activityHeadersData?.data?.data?.totalCalories ?? 0} kcal
+                  {(
+                    activityHeadersData?.data?.data?.totalCalories ?? 0
+                  ).toLocaleString()}{" "}
+                  kcal
                 </p>
               </div>
             </div>
@@ -80,7 +85,9 @@ const Stats: FC = () => {
                   className="mt-1.5 text-green-600 fill-green-100"
                 />
                 <p className="text-lg font-semibold text-green-500">
-                  {activityHeadersData?.data?.data?.totalRun ?? 0}
+                  {(
+                    activityHeadersData?.data?.data?.totalRun ?? 0
+                  ).toLocaleString()}
                 </p>
               </div>
             </div>
@@ -96,7 +103,9 @@ const Stats: FC = () => {
                   className="mt-1.5 text-green-600 fill-green-100"
                 />
                 <p className="text-lg font-semibold text-green-500">
-                  {activityHeadersData?.data?.data?.totalBicycle ?? 0}
+                  {(
+                    activityHeadersData?.data?.data?.totalBicycle ?? 0
+                  ).toLocaleString()}
                 </p>
               </div>
             </div>
@@ -111,7 +120,9 @@ const Stats: FC = () => {
                   className="mt-1.5 text-green-600 fill-green-100"
                 />
                 <p className="text-lg font-semibold text-green-500">
-                  {activityHeadersData?.data?.data?.totalCommute ?? 0}
+                  {(
+                    activityHeadersData?.data?.data?.totalCommute ?? 0
+                  ).toLocaleString()}
                 </p>
               </div>
             </div>
