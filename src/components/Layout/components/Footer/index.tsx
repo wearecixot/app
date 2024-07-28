@@ -1,14 +1,9 @@
 "use client"
 
 import { cn } from "@/utils/cn"
-import { CirclePlus, House, Ticket } from "lucide-react"
+import { CirclePlus, House, User } from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
 import React, { FC } from "react"
-import * as Dialog from "../../../dialog"
-import { PersonStanding } from "lucide-react"
-import { User } from "lucide-react"
-import TabsList from "@/components/TabsList"
-import Tab from "@/components/TabsList/components/Tab"
 
 const Footer: FC = () => {
   const router = useRouter()
