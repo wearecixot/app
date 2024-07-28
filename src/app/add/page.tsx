@@ -97,12 +97,12 @@ const Commute = () => {
 }
 
 const Add = () => {
-  const [selectedTab, setSelectedTab] = React.useState<Tab>("run")
+  const [selectedTab, setSelectedTab] = React.useState<Tab>("commute")
   return (
     <Layout className="px-4 gap-4 h-full flex flex-col">
       <p className="text-2xl font-semibold">Add</p>
       <div className="flex flex-col gap-4 h-full">
-        <TabsList>
+        {/* <TabsList>
           <Tab
             onClick={() => setSelectedTab("run")}
             isActive={selectedTab === "run"}
@@ -121,7 +121,7 @@ const Add = () => {
           >
             Commute
           </Tab>
-        </TabsList>
+        </TabsList> */}
         {selectedTab === "commute" ? (
           <Commute />
         ) : (
